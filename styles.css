@@ -1,0 +1,122 @@
+:root {
+    --fretboard-height: 200;
+    --number-of-strings: 6;
+    --string-top-position: calc(var(--fretboard-height) / var(--number-of-strings) / 2);
+    --string-height: 2;
+    --half-string-height: calc(var(--string-height) / 2 - var(--string-height));
+    --double-fretmark-position-1: calc(var(--fretboard-height) * 0.34);
+    --double-fretmark-position-2: calc(var(--fretboard-height) * 0.67);
+    --noteDotOpacity: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: linear-gradient(to right, #a5b9c2, #155573);
+    font-family: 'Roboto', sans-serif;
+}
+h1 {
+    font-size: 36px;
+    text-align: center;
+    color: #edf2f5;
+}
+
+#container {
+    width: 900px;
+    margin: 70px auto;
+}
+
+.settings {
+    display: flex;
+    color: white;
+    padding: 20px;
+    background: transparent;
+    position: relative;
+    justify-content: center;
+}
+
+.fretboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    width: 90%;
+    height: calc(var(--fretboard-height) * 1px);
+    margin-top: 50px;
+    margin: auto;
+}
+
+.string {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+
+.string:before {
+    content: '';
+    width: 100%;
+    height: calc(var(--string-height) * 1px);
+    background: black;
+    position: absolute;
+    top: 15px;
+    top: calc(var(--string-top-position) * 1px);
+}
+
+.note-fret {
+    display: flex;
+    flex: 1;
+    border-right: 4px solid;
+    color: #ccdae0;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.note-fret:first-child {
+    background-color: transparent;
+    max-width: 40px;
+    border-right: 8px solid;
+    color: #edf2f5;
+}
+
+.note-fret:before {
+    content: attr(data-note);
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    line-height: 26px;
+    text-align: center;
+    background: #963654;
+    z-index: 1;
+    color: #edf2f5;
+    opacity: var(--noteDotOpacity);
+}
+
+.single-fretmark:after, .double-fretmark:before, .double-fretmark:after {
+    content: "";
+    position: absolute;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: #edf2f5;
+} 
+
+.single-fretmark:after {
+    top: calc(var(--fretboard-height) / 2 * 1px);
+    transform: translate(0, -50%);
+}
+
+.double-fretmark:before {
+    top: calc(var(--double-fretmark-position-1) * 1px);
+    transform: translate(-156%, -50%);
+}
+
+.double-fretmark:after {
+    top: calc(var(--double-fretmark-position-2) * 1px);
+    transform: translate(-156%, -50%);
+}
